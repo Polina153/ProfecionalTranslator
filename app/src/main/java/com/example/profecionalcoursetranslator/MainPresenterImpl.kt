@@ -1,5 +1,6 @@
 package com.example.profecionalcoursetranslator
 
+import com.example.profecionalcoursetranslator.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 
