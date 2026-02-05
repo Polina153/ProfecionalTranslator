@@ -1,4 +1,4 @@
-package com.example.profecionalcoursetranslator
+package com.example.profecionalcoursetranslator.model.data
 import com.google.gson.annotations.SerializedName
 
 class Meanings(

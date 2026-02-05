@@ -1,5 +1,8 @@
-package com.example.profecionalcoursetranslator
+package com.example.profecionalcoursetranslator.model.interactor
 
+import com.example.profecionalcoursetranslator.AppState
+import com.example.profecionalcoursetranslator.model.data.DataModel
+import com.example.profecionalcoursetranslator.model.repository.Repository
 import io.reactivex.Observable
 
 class MainInteractor(

@@ -1,7 +1,9 @@
-package com.example.profecionalcoursetranslator
+package com.example.profecionalcoursetranslator.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.profecionalcoursetranslator.AppState
+import com.example.profecionalcoursetranslator.presenter.Presenter
 
 abstract class BaseActivity<T : AppState> : AppCompatActivity(), View {
     // Храним ссылку на презентер

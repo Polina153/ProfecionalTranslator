@@ -1,6 +1,6 @@
-package com.example.profecionalcoursetranslator
+package com.example.profecionalcoursetranslator.view
 
-import io.reactivex.Observable
+import com.example.profecionalcoursetranslator.AppState
 
 // Нижний уровень. View знает о контексте и фреймворке
 interface View {

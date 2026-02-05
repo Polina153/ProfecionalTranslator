@@ -1,4 +1,4 @@
-package com.example.profecionalcoursetranslator
+package com.example.profecionalcoursetranslator.model.network
 
 import okhttp3.Interceptor
 import okhttp3.Response

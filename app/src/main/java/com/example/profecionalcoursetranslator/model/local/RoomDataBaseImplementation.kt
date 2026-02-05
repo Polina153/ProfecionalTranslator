@@ -1,5 +1,7 @@
-package com.example.profecionalcoursetranslator
+package com.example.profecionalcoursetranslator.model.local
 
+import com.example.profecionalcoursetranslator.model.repository.DataSource
+import com.example.profecionalcoursetranslator.model.data.DataModel
 import io.reactivex.Observable
 
 class RoomDataBaseImplementation : DataSource<List<DataModel>> {

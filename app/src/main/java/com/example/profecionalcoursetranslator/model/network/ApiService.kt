@@ -1,5 +1,6 @@
-package com.example.profecionalcoursetranslator
+package com.example.profecionalcoursetranslator.model.network
 
+import com.example.profecionalcoursetranslator.model.data.DataModel
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,15 +1,16 @@
-package com.example.profecionalcoursetranslator
+package com.example.profecionalcoursetranslator.view
 
 import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.profecionalcoursetranslator.AppState
+import com.example.profecionalcoursetranslator.presenter.MainPresenterImpl
+import com.example.profecionalcoursetranslator.presenter.Presenter
+import com.example.profecionalcoursetranslator.R
 import com.example.profecionalcoursetranslator.databinding.ActivityMainBinding
+import com.example.profecionalcoursetranslator.model.data.DataModel
 
 class MainActivity : BaseActivity<AppState>() {
     /*override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +42,7 @@ class MainActivity : BaseActivity<AppState>() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.searchFab.setOnClickListener {
-            val searchDialogFragment = SearchDialogFragment.newInstance()
+            val searchDialogFragment = SearchDialogFragment.Companion.newInstance()
             searchDialogFragment.setOnSearchClickListener(object :
                 SearchDialogFragment.OnSearchClickListener {
                 override fun onClick(searchWord: String) {
