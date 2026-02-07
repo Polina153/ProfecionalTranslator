@@ -1,6 +1,12 @@
-package com.example.profecionalcoursetranslator
+package com.example.profecionalcoursetranslator.presenter
 
+import com.example.profecionalcoursetranslator.AppState
+import com.example.profecionalcoursetranslator.model.interactor.MainInteractor
+import com.example.profecionalcoursetranslator.model.repository.DataSourceLocal
+import com.example.profecionalcoursetranslator.model.repository.DataSourceRemote
+import com.example.profecionalcoursetranslator.model.repository.RepositoryImplementation
 import com.example.profecionalcoursetranslator.rx.SchedulerProvider
+import com.example.profecionalcoursetranslator.view.View
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 

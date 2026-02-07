@@ -1,5 +1,7 @@
-package com.example.profecionalcoursetranslator
+package com.example.profecionalcoursetranslator.model.network
 
+import com.example.profecionalcoursetranslator.model.repository.DataSource
+import com.example.profecionalcoursetranslator.model.data.DataModel
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import io.reactivex.Observable
 import okhttp3.Interceptor

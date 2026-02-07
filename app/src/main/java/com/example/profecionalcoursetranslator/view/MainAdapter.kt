@@ -1,10 +1,12 @@
-package com.example.profecionalcoursetranslator
+package com.example.profecionalcoursetranslator.view
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.profecionalcoursetranslator.R
+import com.example.profecionalcoursetranslator.model.data.DataModel
 
 class MainAdapter(
     private var onListItemClickListener: OnListItemClickListener,

@@ -1,5 +1,7 @@
 package com.example.profecionalcoursetranslator
 
+import com.example.profecionalcoursetranslator.model.data.DataModel
+
 sealed class AppState {
 
     data class Success(val data: List<DataModel>?) : AppState()

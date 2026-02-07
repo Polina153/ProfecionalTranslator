@@ -1,5 +1,7 @@
-package com.example.profecionalcoursetranslator
+package com.example.profecionalcoursetranslator.model.repository
 
+import com.example.profecionalcoursetranslator.model.data.DataModel
+import com.example.profecionalcoursetranslator.model.network.RetrofitImplementation
 import io.reactivex.Observable
 
 // Для получения внешних данных мы будем использовать Retrofit
