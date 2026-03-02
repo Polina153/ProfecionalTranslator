@@ -1,4 +1,4 @@
-package com.example.profecionalcoursetranslator
+package com.example.profecionalcoursetranslator.view
 
 import com.example.profecionalcoursetranslator.model.data.DataModel
 

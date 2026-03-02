@@ -1,4 +1,4 @@
-package com.example.profecionalcoursetranslator.rx
+package com.example.profecionalcoursetranslator.schedulerprovider
 
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers

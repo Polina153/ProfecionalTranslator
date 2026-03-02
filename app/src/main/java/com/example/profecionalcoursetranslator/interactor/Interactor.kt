@@ -1,4 +1,4 @@
-package com.example.profecionalcoursetranslator.model.interactor
+package com.example.profecionalcoursetranslator.interactor
 
 import io.reactivex.Observable
 
