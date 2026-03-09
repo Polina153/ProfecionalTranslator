@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id ("kotlin-kapt")
 }
 
 android {
@@ -65,10 +64,13 @@ dependencies {
     testImplementation ("junit:junit:4.+")
     androidTestImplementation ("androidx.test.ext:junit:1.1.3")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
-    //Dagger
-    implementation ("com.google.dagger:dagger:2.53.1")
-    implementation("com.google.dagger:dagger-android-support:2.53.1")
-    kapt ("com.google.dagger:dagger-android-processor:2.53.1")
-    kapt ("com.google.dagger:dagger-compiler:2.53.1")
-
+    //Koin for Android
+    //Current version
+    val koinVersion= "3.1.2"
+    //Koin core features
+    implementation ("io.insert-koin:koin-core:$koinVersion")
+    //Koin main features for Android (Scope,ViewModel ...)
+    implementation ("io.insert-koin:koin-android:$koinVersion")
+    //Koin Java Compatibility
+    implementation ("io.insert-koin:koin-android-compat:$koinVersion")
 }

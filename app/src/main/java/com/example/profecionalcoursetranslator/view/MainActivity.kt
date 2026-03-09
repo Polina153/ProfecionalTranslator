@@ -6,46 +6,23 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.profecionalcoursetranslator.MainViewModel
 import com.example.profecionalcoursetranslator.R
 import com.example.profecionalcoursetranslator.databinding.ActivityMainBinding
 import com.example.profecionalcoursetranslator.interactor.MainInteractor
-import com.example.profecionalcoursetranslator.view.AppState
 import com.example.profecionalcoursetranslator.model.data.DataModel
-import dagger.android.AndroidInjection
 import isOnline
-import javax.inject.Inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity<AppState, MainInteractor>() {
-    /*override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-    }*/
-    // Внедряем фабрику для создания ViewModel
-    @Inject
-    internal lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var binding: ActivityMainBinding
     override lateinit var model: MainViewModel
 
-    /* // Создаём модель
-    override val model: MainViewModel by lazy {
-        ViewModelProvider.NewInstanceFactory().create(MainViewModel::class.java)
-    }*/
-    // Паттерн Observer в действии. Именно с его помощью мы подписываемся на
-    // изменения в LiveData
-    //private val observer = Observer<AppState> { renderData(it) }
+    //private var adapter: MainAdapter? = null
+    private val adapter: MainAdapter by lazy { MainAdapter(onListItemClickListener) }
 
-
-    private var adapter: MainAdapter? = null
     private val fabClickListener: android.view.View.OnClickListener =
         View.OnClickListener {
             val searchDialogFragment = SearchDialogFragment.newInstance()
@@ -73,72 +50,48 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
             }
         }
 
-    /*override fun createPresenter(): Presenter<AppState, View> {
-        return MainPresenterImpl()
-    }*/
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Сообщаем Dagger’у, что тут понадобятся зависимости
-        AndroidInjection.inject(this)
-
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initViewModel()
+        initViews()
+    }
 
-        // Фабрика уже готова, можно создавать ViewModel
-        model = viewModelFactory.create(MainViewModel::class.java)
-        model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
-
-
-        binding.searchFab.setOnClickListener(fabClickListener) /*{
-            val searchDialogFragment = SearchDialogFragment.newInstance()
-            searchDialogFragment.setOnSearchClickListener(object :
-                SearchDialogFragment.OnSearchClickListener {
-                override fun onClick(searchWord: String) {
-                    // Обратите внимание на этот ключевой момент. У ViewModel
-                    // мы получаем LiveData через метод getData и подписываемся
-                    // на изменения, передавая туда observer
-                    //FIXME ошибку надо поправить!!!
-                    model.getData(searchWord, true).observe(this@MainActivity, observer)
-                }
-            })
-            searchDialogFragment.show(supportFragmentManager, BOTTOM_SHEET_FRAGMENT_DIALOG_TAG)
-        }*/
+    private fun initViews() {
+        binding.searchFab.setOnClickListener(fabClickListener)
         binding.mainActivityRecyclerview.layoutManager = LinearLayoutManager(applicationContext)
         binding.mainActivityRecyclerview.adapter = adapter
     }
 
-    /*binding.searchFab.setOnClickListener {
-        val searchDialogFragment = SearchDialogFragment.Companion.newInstance()
-        searchDialogFragment.setOnSearchClickListener(object :
-            SearchDialogFragment.OnSearchClickListener {
-            override fun onClick(searchWord: String) {
-                presenter.getData(searchWord, true)
-            }
-        })
-        searchDialogFragment.show(supportFragmentManager, BOTTOM_SHEET_FRAGMENT_DIALOG_TAG)
+    private fun initViewModel() {
+        // Убедимся, что модель инициализируется раньше View
+        if (binding.mainActivityRecyclerview.adapter != null) {
+            throw IllegalStateException("The ViewModel should be initialised first")
+        }
+        // Теперь ViewModel инициализируется через функцию by viewModel()
+        // Это функция, предоставляемая Koin из коробки через зависимость
+        // import org.koin.androidx.viewmodel.ext.android.viewModel
+        val viewModel: MainViewModel by viewModel()
+        model = viewModel
+        model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
     }
-}*/
+
 
     override fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Success -> {
-                val dataModel = appState.data
-                if (dataModel == null || dataModel.isEmpty()) {
-                    showErrorScreen(getString(R.string.empty_server_response_on_success))
+                showViewWorking()
+                val data = appState.data
+                if (data.isNullOrEmpty()) {
+                    showAlertDialog(
+                        getString(R.string.dialog_title_sorry),
+                        getString(R.string.empty_server_response_on_success)
+                    )
                 } else {
-                    showViewSuccess()
-                    if (adapter == null) {
-                        binding.mainActivityRecyclerview.layoutManager =
-                            LinearLayoutManager(applicationContext)
-                        binding.mainActivityRecyclerview.adapter =
-                            MainAdapter(onListItemClickListener, dataModel)
-                    } else {
-                        adapter!!.setData(dataModel)
-                    }
+                    adapter.setData(data)
                 }
             }
-
             is AppState.Loading -> {
                 showViewLoading()
                 if (appState.progress != null) {
@@ -150,42 +103,19 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                     binding.progressBarRound.visibility = VISIBLE
                 }
             }
-
             is AppState.Error -> {
-                showErrorScreen(appState.error.message)
+                showViewWorking()
+                showAlertDialog(getString(R.string.error_stub), appState.error.message)
             }
         }
     }
 
-    private fun showErrorScreen(error: String?) {
-        showViewError()
-        binding.errorTextview.text = error ?: getString(R.string.undefined_error)
-        binding.reloadButton.setOnClickListener {
-            //presenter.getData("hi", true)
-            // В случае ошибки мы повторно запрашиваем данные и подписываемся
-            // на изменения
-            //FIXME ошибку поправить
-            //  model.getData("hi", true).observe(this, observer)
-
-        }
-    }
-
-    private fun showViewSuccess() {
-        binding.successLinearLayout.visibility = VISIBLE
+    private fun showViewWorking() {
         binding.loadingFrameLayout.visibility = GONE
-        binding.errorLinearLayout.visibility = GONE
     }
 
     private fun showViewLoading() {
-        binding.successLinearLayout.visibility = GONE
         binding.loadingFrameLayout.visibility = VISIBLE
-        binding.errorLinearLayout.visibility = GONE
-    }
-
-    private fun showViewError() {
-        binding.successLinearLayout.visibility = GONE
-        binding.loadingFrameLayout.visibility = GONE
-        binding.errorLinearLayout.visibility = VISIBLE
     }
 
     companion object {
