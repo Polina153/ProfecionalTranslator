@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profecionalcoursetranslator.R
-import com.example.profecionalcoursetranslator.convertMeaningsToString
 import com.example.profecionalcoursetranslator.model.data.DataModel
+import convertMeaningsToString
 
 class MainAdapter(private var onListItemClickListener: OnListItemClickListener) :
     RecyclerView.Adapter<MainAdapter.RecyclerItemViewHolder>() {

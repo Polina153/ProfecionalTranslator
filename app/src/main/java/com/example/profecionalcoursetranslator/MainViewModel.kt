@@ -5,6 +5,7 @@ import com.example.profecionalcoursetranslator.interactor.MainInteractor
 import com.example.profecionalcoursetranslator.view.AppState
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
+import parseSearchResults
 
 // Инжектим интерактор в конструктор
 class MainViewModel(private val interactor: MainInteractor) :
