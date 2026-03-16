@@ -20,7 +20,6 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
     private lateinit var binding: ActivityMainBinding
     override lateinit var model: MainViewModel
 
-    //private var adapter: MainAdapter? = null
     private val adapter: MainAdapter by lazy { MainAdapter(onListItemClickListener) }
 
     private val fabClickListener: android.view.View.OnClickListener =
@@ -74,7 +73,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         // import org.koin.androidx.viewmodel.ext.android.viewModel
         val viewModel: MainViewModel by viewModel()
         model = viewModel
-        model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
+        model.subscribe().observe(this@MainActivity, { renderData(it) })
     }
 
 

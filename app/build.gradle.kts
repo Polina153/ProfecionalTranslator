@@ -73,4 +73,7 @@ dependencies {
     implementation ("io.insert-koin:koin-android:$koinVersion")
     //Koin Java Compatibility
     implementation ("io.insert-koin:koin-android-compat:$koinVersion")
+    testImplementation("io.insert-koin:koin-test:${koinVersion}")
+
+    implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
 }
