@@ -1,3 +1,5 @@
+package com.example.profecionalcoursetranslator
+
 import com.example.profecionalcoursetranslator.model.data.DataModel
 import com.example.profecionalcoursetranslator.model.data.Meanings
 import com.example.profecionalcoursetranslator.view.AppState

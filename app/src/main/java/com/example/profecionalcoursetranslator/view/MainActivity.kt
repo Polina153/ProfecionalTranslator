@@ -5,10 +5,11 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.profecionalcoursetranslator.DescriptionActivity
 import com.example.profecionalcoursetranslator.MainViewModel
 import com.example.profecionalcoursetranslator.R
+import com.example.profecionalcoursetranslator.convertMeaningsToString
 import com.example.profecionalcoursetranslator.databinding.ActivityMainBinding
 import com.example.profecionalcoursetranslator.interactor.MainInteractor
 import com.example.profecionalcoursetranslator.model.data.DataModel
@@ -34,7 +35,16 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
     private val onListItemClickListener: MainAdapter.OnListItemClickListener =
         object : MainAdapter.OnListItemClickListener {
             override fun onItemClick(data: DataModel) {
-                Toast.makeText(this@MainActivity, data.text, Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MainActivity, data.text, Toast.LENGTH_SHORT).show()
+                startActivity(
+                    DescriptionActivity.getIntent(
+                        this@MainActivity,
+                        data.text!!,
+                        convertMeaningsToString(data.meanings!!),
+                        data.meanings[0].imageUrl
+                    )
+                )
+
             }
         }
     private val onSearchClickListener: SearchDialogFragment.OnSearchClickListener =
@@ -91,6 +101,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                     adapter.setData(data)
                 }
             }
+
             is AppState.Loading -> {
                 showViewLoading()
                 if (appState.progress != null) {
@@ -102,6 +113,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                     binding.progressBarRound.visibility = VISIBLE
                 }
             }
+
             is AppState.Error -> {
                 showViewWorking()
                 showAlertDialog(getString(R.string.error_stub), appState.error.message)

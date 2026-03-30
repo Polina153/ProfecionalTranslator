@@ -61,19 +61,28 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:3.12.1")
     implementation("com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0")
     //добавила тест:
-    testImplementation ("junit:junit:4.+")
-    androidTestImplementation ("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
+    testImplementation("junit:junit:4.+")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
     //Koin for Android
     //Current version
-    val koinVersion= "3.1.2"
+    val koinVersion = "3.1.2"
     //Koin core features
-    implementation ("io.insert-koin:koin-core:$koinVersion")
+    implementation("io.insert-koin:koin-core:$koinVersion")
     //Koin main features for Android (Scope,ViewModel ...)
-    implementation ("io.insert-koin:koin-android:$koinVersion")
+    implementation("io.insert-koin:koin-android:$koinVersion")
     //Koin Java Compatibility
-    implementation ("io.insert-koin:koin-android-compat:$koinVersion")
+    implementation("io.insert-koin:koin-android-compat:$koinVersion")
     testImplementation("io.insert-koin:koin-test:${koinVersion}")
 
     implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
+
+    //Download images
+    //Picasso
+    implementation("com.squareup.picasso:picasso:2.71828")
+    //Glide
+    implementation("com.github.bumptech.glide:glide:4.11.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
+    //Coil
+    implementation("io.coil-kt:coil:0.11.0")
 }

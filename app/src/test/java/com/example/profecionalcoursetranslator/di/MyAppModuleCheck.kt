@@ -4,7 +4,7 @@ import kotlin.test.Test
 
 class MyAppModuleCheck{
 
-   /* @Test
+    /*@Test
     fun checkKoinModule() {
         application.verify()
     }*/
