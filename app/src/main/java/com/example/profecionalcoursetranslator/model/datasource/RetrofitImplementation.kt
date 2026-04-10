@@ -1,10 +1,9 @@
-package com.example.profecionalcoursetranslator.model.network
+package com.example.profecionalcoursetranslator.model.datasource
 
-import com.example.profecionalcoursetranslator.model.repository.DataSource
 import com.example.profecionalcoursetranslator.model.data.DataModel
+import com.example.profecionalcoursetranslator.model.network.ApiService
+import com.example.profecionalcoursetranslator.model.network.BaseInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import io.reactivex.Observable
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitImplementation : DataSource<List<DataModel>> {
 
     override suspend fun getData(word: String): List<DataModel> {
-        return getService(BaseInterceptor.interceptor).searchAsync(word).await()
+        return getService(BaseInterceptor.Companion.interceptor).searchAsync(word).await()
     }
 
     private fun getService(interceptor: Interceptor): ApiService {
@@ -30,7 +29,7 @@ class RetrofitImplementation : DataSource<List<DataModel>> {
         return Retrofit.Builder()
             .baseUrl(BASE_URL_LOCATIONS)
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory.Companion())
             .client(createOkHttpClient(interceptor))
             .build()
     }

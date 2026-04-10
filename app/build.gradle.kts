@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -85,4 +86,9 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
     //Coil
     implementation("io.coil-kt:coil:0.11.0")
+    //Room
+    val room_version = "2.6.1"
+    ksp("androidx.room:room-compiler:${room_version}")
+    implementation("androidx.room:room-runtime:${room_version}")
+    implementation("androidx.room:room-ktx:${room_version}")
 }

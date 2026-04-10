@@ -1,6 +1,7 @@
 package com.example.profecionalcoursetranslator.model.repository
 
 import com.example.profecionalcoursetranslator.model.data.DataModel
+import com.example.profecionalcoursetranslator.model.datasource.DataSource
 import io.reactivex.Observable
 
 class RepositoryImplementation(private val dataSource: DataSource<List<DataModel>>) :

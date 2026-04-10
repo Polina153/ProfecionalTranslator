@@ -1,4 +1,4 @@
-package com.example.profecionalcoursetranslator.model.repository
+package com.example.profecionalcoursetranslator.model.datasource
 
 interface DataSource<T> {
 

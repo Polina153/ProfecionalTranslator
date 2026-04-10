@@ -19,7 +19,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.example.profecionalcoursetranslator.databinding.ActivityDescriptionBinding
-import com.example.profecionalcoursetranslator.model.repository.DataSource
+import com.example.profecionalcoursetranslator.model.datasource.DataSource
 import com.example.profecionalcoursetranslator.view.AlertDialogFragment
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
