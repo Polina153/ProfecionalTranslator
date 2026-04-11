@@ -1,18 +1,18 @@
 package com.example.profecionalcoursetranslator.view.history
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profecionalcoursetranslator.R
 import com.example.profecionalcoursetranslator.model.data.DataModel
-import com.example.profecionalcoursetranslator.view.View
 
 class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.RecyclerItemViewHolder>() {
 
     private var data: List<DataModel> = arrayListOf()
-    // Метод передачи данных в адаптер
+
     fun setData(data: List<DataModel>) {
         this.data = data
         notifyDataSetChanged()
@@ -33,13 +33,15 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.RecyclerItemViewHolde
         return data.size
     }
 
-    inner class RecyclerItemViewHolder(view: View) : RecyclerView.ViewHolder(view as android.view.View) {
+    inner class RecyclerItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(data: DataModel) {
             if (layoutPosition != RecyclerView.NO_POSITION) {
-                itemView.findViewById<TextView>(R.id.header_textview_recycler_item).text = data.text
+                itemView.findViewById<TextView>(R.id.header_history_textview_recycler_item).text =
+                    data.text
                 itemView.setOnClickListener {
-                    Toast.makeText(itemView.context, "on click: ${data.text}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(itemView.context, "on click: ${data.text}", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }

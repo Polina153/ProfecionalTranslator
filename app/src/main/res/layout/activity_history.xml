@@ -6,11 +6,19 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
+    <include
+        android:id="@+id/included_history"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
     <FrameLayout
         android:id="@+id/working_frame_layout"
         android:layout_width="match_parent"
         android:gravity="center"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="?android:actionBarSize">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/history_activity_recyclerview"
