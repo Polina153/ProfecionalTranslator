@@ -5,9 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.lifecycle.Observer
 import com.example.profecionalcoursetranslator.DescriptionActivity
 import com.example.profecionalcoursetranslator.MainViewModel
@@ -27,13 +24,27 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
     private lateinit var binding: ActivityMainBinding
     override lateinit var model: MainViewModel
-    private val adapter: MainAdapter by lazy { MainAdapter(onListItemClickListener) }
+   // private val adapter: MainAdapter by lazy { MainAdapter(onListItemClickListener) }
+   private val adapter: MainAdapter by lazy { MainAdapter(::onItemClick) }
+
+
     private val fabClickListener: View.OnClickListener =
         View.OnClickListener {
             val searchDialogFragment = SearchDialogFragment.newInstance()
             searchDialogFragment.setOnSearchClickListener(onSearchClickListener)
             searchDialogFragment.show(supportFragmentManager, BOTTOM_SHEET_FRAGMENT_DIALOG_TAG)
         }
+
+    fun onItemClick(data: DataModel) {
+        startActivity(
+            DescriptionActivity.getIntent(
+                this@MainActivity,
+                data.text!!,
+                convertMeaningsToString(data.meanings!!),
+                data.meanings[0].imageUrl
+            )
+        )}
+
     private val onListItemClickListener: MainAdapter.OnListItemClickListener =
         object : MainAdapter.OnListItemClickListener {
             override fun onItemClick(data: DataModel) {
@@ -83,6 +94,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                 startActivity(Intent(this, HistoryActivity::class.java))
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -97,6 +109,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
     }
 
     private fun initViews() {
+        setSupportActionBar(binding.includedMain.toolbar)
         binding.searchFab.setOnClickListener(fabClickListener)
         binding.mainActivityRecyclerview.adapter = adapter
     }

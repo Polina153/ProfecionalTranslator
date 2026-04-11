@@ -10,7 +10,8 @@ import com.example.profecionalcoursetranslator.R
 import com.example.profecionalcoursetranslator.model.data.DataModel
 import com.example.profecionalcoursetranslator.convertMeaningsToString
 
-class MainAdapter(private var onListItemClickListener: OnListItemClickListener) :
+//class MainAdapter(private var onListItemClickListener: OnListItemClickListener) :
+class MainAdapter(private var onListItemClick: (DataModel) -> Unit):
     RecyclerView.Adapter<MainAdapter.RecyclerItemViewHolder>() {
 
     private var data: List<DataModel> = arrayListOf()
@@ -49,7 +50,8 @@ class MainAdapter(private var onListItemClickListener: OnListItemClickListener) 
     }
 
     private fun openInNewWindow(listItemData: DataModel) {
-        onListItemClickListener.onItemClick(listItemData)
+        //onListItemClickListener.onItemClick(listItemData)
+        onListItemClick(listItemData)
     }
 
     interface OnListItemClickListener {
