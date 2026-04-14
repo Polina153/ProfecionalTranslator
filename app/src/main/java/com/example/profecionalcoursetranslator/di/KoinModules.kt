@@ -31,7 +31,11 @@ val applicationModule = module {
 
 
     single<Repository<List<DataModel>>> { RepositoryImplementation(RetrofitImplementation()) }
-    single<RepositoryLocal<List<DataModel>>> { RepositoryImplementationLocal(RoomDataBaseImplementation(get())) }
+    single<RepositoryLocal<List<DataModel>>> {
+        RepositoryImplementationLocal(
+            RoomDataBaseImplementation(get())
+        )
+    }
 }
 
 val mainScreen = module {
@@ -49,4 +53,3 @@ val mainScreen = module {
     factory { MainInteractor(get(named(NAME_REMOTE)), get(named(NAME_LOCAL))) }
     factory { MainViewModel(get()) }
 }*/
-

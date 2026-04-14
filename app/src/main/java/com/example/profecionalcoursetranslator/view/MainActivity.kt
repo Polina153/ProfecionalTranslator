@@ -9,10 +9,10 @@ import androidx.lifecycle.Observer
 import com.example.profecionalcoursetranslator.DescriptionActivity
 import com.example.profecionalcoursetranslator.MainViewModel
 import com.example.profecionalcoursetranslator.R
-import com.example.profecionalcoursetranslator.convertMeaningsToString
 import com.example.profecionalcoursetranslator.databinding.ActivityMainBinding
 import com.example.profecionalcoursetranslator.interactor.MainInteractor
 import com.example.profecionalcoursetranslator.model.data.DataModel
+import com.example.profecionalcoursetranslator.utils.convertMeaningsToString
 import com.example.profecionalcoursetranslator.view.history.HistoryActivity
 import isOnline
 import org.koin.androidx.viewmodel.ext.android.viewModel

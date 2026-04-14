@@ -45,6 +45,7 @@ class HistoryActivity : BaseActivity<AppState, HistoryInteractor>() {
     }
 
     private fun initViews() {
+        setSupportActionBar(binding.includedHistory.toolbar)
         binding.historyActivityRecyclerview.adapter = adapter
         setSupportActionBar(binding.includedHistory.toolbar)
     }

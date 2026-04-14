@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profecionalcoursetranslator.R
 import com.example.profecionalcoursetranslator.model.data.DataModel
-import com.example.profecionalcoursetranslator.convertMeaningsToString
+import com.example.profecionalcoursetranslator.utils.convertMeaningsToString
 
 //class MainAdapter(private var onListItemClickListener: OnListItemClickListener) :
 class MainAdapter(private var onListItemClick: (DataModel) -> Unit):

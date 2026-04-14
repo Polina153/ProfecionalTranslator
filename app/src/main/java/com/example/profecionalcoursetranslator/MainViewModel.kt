@@ -2,6 +2,7 @@ package com.example.profecionalcoursetranslator
 
 import androidx.lifecycle.LiveData
 import com.example.profecionalcoursetranslator.interactor.MainInteractor
+import com.example.profecionalcoursetranslator.utils.parseSearchResults
 import com.example.profecionalcoursetranslator.view.AppState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
