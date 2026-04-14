@@ -1,9 +1,11 @@
 package com.example.profecionalcoursetranslator
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.profecionalcoursetranslator.interactor.MainInteractor
 import com.example.profecionalcoursetranslator.view.AppState
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -12,30 +14,42 @@ class MainViewModel(private val interactor: MainInteractor) :
     BaseViewModel<AppState>() {
 
     private val liveDataForViewToObserve: LiveData<AppState> = _mutableLiveData
+    private val TAG = "MainViewModel"
 
     fun subscribe(): LiveData<AppState> {
         return liveDataForViewToObserve
     }
 
     override fun getData(word: String, isOnline: Boolean) {
-        _mutableLiveData.value = AppState.Loading(null)
+        Log.d(TAG, "getData: word='$word', isOnline=$isOnline")
         cancelJob()
         // Запускаем корутину для асинхронного доступа к серверу с помощью
         // launch
-        viewModelCoroutineScope.launch { startInteractor(word, isOnline) }
-    }
-
-
-    // Добавляем suspend
-    // withContext(Dispatchers.IO) указывает, что доступ в сеть должен
-    // осуществляться через диспетчер IO (который предназначен именно для таких
-    // операций), хотя это и не обязательно указывать явно, потому что Retrofit
-    // и так делает это благодаря CoroutineCallAdapterFactory(). Это же
-    // касается и Room
-    private suspend fun startInteractor(word: String, isOnline: Boolean) =
-        withContext(Dispatchers.IO) {
-            _mutableLiveData.postValue(parseSearchResults(interactor.getData(word, isOnline)))
+        // Запускаем корутину в главном потоке
+        viewModelCoroutineScope.launch {
+            flow {
+                // Тяжёлая операция – в фоне
+                val result = withContext(Dispatchers.IO) {
+                    interactor.getData(word, isOnline)
+                }
+                // Парсим результат
+                val parsed = parseSearchResults(result)
+                emit(parsed)
+            }
+                .onStart {
+                    Log.d(TAG, "onStart – отправляем Loading")
+                    _mutableLiveData.value = AppState.Loading(null)
+                }
+                .catch { e ->
+                    Log.e(TAG, "Ошибка в Flow", e)
+                    _mutableLiveData.value = AppState.Error(e)
+                }
+                .collect { state ->
+                    Log.d(TAG, "collect: $state")
+                    _mutableLiveData.value = state
+                }
         }
+    }
 
     // Обрабатываем ошибки
     override fun handleError(error: Throwable) {
