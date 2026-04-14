@@ -5,9 +5,9 @@ import com.example.profecionalcoursetranslator.model.data.Meanings
 import com.example.profecionalcoursetranslator.room.HistoryEntity
 import com.example.profecionalcoursetranslator.view.AppState
 
-fun parseOnlineSearchResults(appState: AppState): AppState {
+/*fun parseOnlineSearchResults(appState: AppState): AppState {
     return AppState.Success(mapResult(appState, true))
-}
+}*/
 
 fun parseSearchResults(data: AppState): AppState {
     val newSearchResults = arrayListOf<DataModel>()
