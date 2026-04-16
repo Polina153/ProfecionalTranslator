@@ -3,6 +3,7 @@ package com.example.profecionalcoursetranslator.view
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.profecionalcoursetranslator.BaseViewModel
 import com.example.profecionalcoursetranslator.R
@@ -14,20 +15,29 @@ import isOnline
 
 abstract class BaseActivity<T : AppState, I : Interactor<T>> : AppCompatActivity() {
 
-    private lateinit var binding: LoadingLayoutBinding
+    //private lateinit var binding: LoadingLayoutBinding
 
     // В каждой Активити будет своя ViewModel, которая наследуется от BaseViewModel
     abstract val model: BaseViewModel<T>
     protected var isNetworkAvailable: Boolean = false
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    private var loadingFrameLayout: View? = null
+    private var progressBarHorizontal: ProgressBar? = null
+    private var progressBarRound: ProgressBar? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         isNetworkAvailable = isOnline(applicationContext)
     }
 
     override fun onResume() {
         super.onResume()
-        binding = LoadingLayoutBinding.inflate(layoutInflater)
+        //  binding = LoadingLayoutBinding.inflate(layoutInflater)
+        if (loadingFrameLayout == null) {
+            loadingFrameLayout = findViewById(R.id.loading_frame_layout)
+            progressBarHorizontal = findViewById(R.id.progress_bar_horizontal)
+            progressBarRound = findViewById(R.id.progress_bar_round)
+        }
 
         isNetworkAvailable = isOnline(applicationContext)
         if (!isNetworkAvailable && isDialogNull()) {
@@ -55,12 +65,12 @@ abstract class BaseActivity<T : AppState, I : Interactor<T>> : AppCompatActivity
             is AppState.Loading -> {
                 showViewLoading()
                 if (appState.progress != null) {
-                    binding.progressBarHorizontal.visibility = View.VISIBLE
-                    binding.progressBarRound.visibility = View.GONE
-                    binding.progressBarHorizontal.progress = appState.progress
+                    progressBarHorizontal?.visibility = View.VISIBLE
+                    progressBarRound?.visibility = View.GONE
+                    progressBarHorizontal?.progress = appState.progress ?: 0
                 } else {
-                    binding.progressBarHorizontal.visibility = View.GONE
-                    binding.progressBarRound.visibility = View.VISIBLE
+                    progressBarHorizontal?.visibility = View.GONE
+                    progressBarRound?.visibility = View.VISIBLE
                 }
             }
 
@@ -85,11 +95,11 @@ abstract class BaseActivity<T : AppState, I : Interactor<T>> : AppCompatActivity
     }
 
     private fun showViewWorking() {
-        binding.loadingFrameLayout.visibility = View.GONE
+        loadingFrameLayout?.visibility = View.GONE
     }
 
     private fun showViewLoading() {
-        binding.loadingFrameLayout.visibility = View.VISIBLE
+        loadingFrameLayout?.visibility = View.VISIBLE
     }
 
 
