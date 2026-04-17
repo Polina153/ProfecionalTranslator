@@ -2,7 +2,7 @@ package com.example.profecionalcoursetranslator.room
 
 
 import androidx.room.*
-
+//hgkdjfhgdkjghjdhfgkdghkdhg
 // Построение методов должно быть вам знакомо. Единственное, чему стоит
 // уделить внимание - ключевое слово suspend, которое намекает, что все
 // запросы в БД будут асинхронными (корутины поддерживаются в Room изначально)
