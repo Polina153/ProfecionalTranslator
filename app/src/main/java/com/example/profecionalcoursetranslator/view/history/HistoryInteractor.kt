@@ -1,10 +1,11 @@
 package com.example.profecionalcoursetranslator.view.history
 
-import com.example.profecionalcoursetranslator.interactor.Interactor
-import com.example.profecionalcoursetranslator.model.data.DataModel
-import com.example.profecionalcoursetranslator.model.repository.Repository
-import com.example.profecionalcoursetranslator.model.repository.RepositoryLocal
-import com.example.profecionalcoursetranslator.view.AppState
+import com.example.core.Interactor
+import com.example.model.AppState
+import com.example.model.DataModel
+import com.example.repository.Repository
+import com.example.repository.RepositoryLocal
+
 
 // Класс мало чем отличается от интерактора, который мы уже описывали
 class HistoryInteractor(

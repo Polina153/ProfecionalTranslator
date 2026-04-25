@@ -1,6 +1,6 @@
 package com.example.profecionalcoursetranslator.view
 
-import com.example.profecionalcoursetranslator.view.AppState
+import com.example.model.AppState
 
 // Нижний уровень. View знает о контексте и фреймворке
 interface View {

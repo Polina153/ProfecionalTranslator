@@ -2,10 +2,10 @@ package com.example.profecionalcoursetranslator.view.history
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import com.example.core.BaseActivity
+import com.example.model.AppState
+import com.example.model.DataModel
 import com.example.profecionalcoursetranslator.databinding.ActivityHistoryBinding
-import com.example.profecionalcoursetranslator.model.data.DataModel
-import com.example.profecionalcoursetranslator.view.AppState
-import com.example.profecionalcoursetranslator.view.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

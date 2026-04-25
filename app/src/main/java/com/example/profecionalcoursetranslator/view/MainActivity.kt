@@ -6,14 +6,15 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
+import com.example.core.BaseActivity
+import com.example.model.AppState
+import com.example.model.DataModel
 import com.example.profecionalcoursetranslator.DescriptionActivity
 import com.example.profecionalcoursetranslator.MainViewModel
 import com.example.profecionalcoursetranslator.R
 import com.example.profecionalcoursetranslator.databinding.ActivityMainBinding
-import com.example.profecionalcoursetranslator.interactor.MainInteractor
-import com.example.profecionalcoursetranslator.model.data.DataModel
-import com.example.profecionalcoursetranslator.utils.convertMeaningsToString
 import com.example.profecionalcoursetranslator.view.history.HistoryActivity
+import com.example.repository.convertMeaningsToString
 import isOnline
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -41,7 +42,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                 this@MainActivity,
                 data.text!!,
                 convertMeaningsToString(data.meanings!!),
-                data.meanings[0].imageUrl
+                data.meanings!![0].imageUrl
             )
         )}
 
@@ -53,7 +54,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                         this@MainActivity,
                         data.text!!,
                         convertMeaningsToString(data.meanings!!),
-                        data.meanings[0].imageUrl
+                        data.meanings!![0].imageUrl
                     )
                 )
             }

@@ -21,4 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "ProfecionalCourseTranslator"
 include(":app")
- 
+include(":core")
+include(":model")
+include(":utils")
+include(":repository")

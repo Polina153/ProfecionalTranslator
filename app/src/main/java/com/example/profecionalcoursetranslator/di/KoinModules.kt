@@ -1,18 +1,18 @@
 package com.example.profecionalcoursetranslator.di
 
 import androidx.room.Room
+import com.example.model.DataModel
 import com.example.profecionalcoursetranslator.MainViewModel
-import com.example.profecionalcoursetranslator.interactor.MainInteractor
-import com.example.profecionalcoursetranslator.model.data.DataModel
-import com.example.profecionalcoursetranslator.model.datasource.RetrofitImplementation
-import com.example.profecionalcoursetranslator.model.datasource.RoomDataBaseImplementation
-import com.example.profecionalcoursetranslator.model.repository.Repository
-import com.example.profecionalcoursetranslator.model.repository.RepositoryImplementation
-import com.example.profecionalcoursetranslator.model.repository.RepositoryImplementationLocal
-import com.example.profecionalcoursetranslator.model.repository.RepositoryLocal
-import com.example.profecionalcoursetranslator.room.HistoryDataBase
+import com.example.profecionalcoursetranslator.view.MainInteractor
 import com.example.profecionalcoursetranslator.view.history.HistoryInteractor
 import com.example.profecionalcoursetranslator.view.history.HistoryViewModel
+import com.example.repository.Repository
+import com.example.repository.RepositoryImplementation
+import com.example.repository.RepositoryImplementationLocal
+import com.example.repository.RepositoryLocal
+import com.example.repository.RetrofitImplementation
+import com.example.repository.RoomDataBaseImplementation
+import com.example.repository.room.HistoryDataBase
 import org.koin.dsl.module
 
 // Для удобства создадим две переменные: в одной находятся зависимости,

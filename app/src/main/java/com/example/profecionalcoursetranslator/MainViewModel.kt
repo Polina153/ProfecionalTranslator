@@ -2,9 +2,10 @@ package com.example.profecionalcoursetranslator
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.example.profecionalcoursetranslator.interactor.MainInteractor
-import com.example.profecionalcoursetranslator.utils.parseSearchResults
-import com.example.profecionalcoursetranslator.view.AppState
+import com.example.core.viewmodel.BaseViewModel
+import com.example.model.AppState
+import com.example.profecionalcoursetranslator.view.MainInteractor
+import com.example.repository.parseSearchResults
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

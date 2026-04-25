@@ -1,9 +1,9 @@
 package com.example.profecionalcoursetranslator.view.history
 
 import androidx.lifecycle.LiveData
-import com.example.profecionalcoursetranslator.BaseViewModel
-import com.example.profecionalcoursetranslator.utils.parseLocalSearchResults
-import com.example.profecionalcoursetranslator.view.AppState
+import com.example.core.viewmodel.BaseViewModel
+import com.example.model.AppState
+import com.example.repository.parseLocalSearchResults
 import kotlinx.coroutines.launch
 
 class HistoryViewModel(private val interactor: HistoryInteractor) :
