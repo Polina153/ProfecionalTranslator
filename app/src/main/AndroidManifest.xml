@@ -17,7 +17,7 @@
         android:theme="@style/Theme.ProfecionalCourseTranslator"
         tools:targetApi="33">
         <activity
-            android:name=".view.history.HistoryActivity"
+            android:name="com.example.history.HistoryActivity"
             android:exported="false" />
         <activity
             android:name=".DescriptionActivity"

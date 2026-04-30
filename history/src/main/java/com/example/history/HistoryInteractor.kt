@@ -1,4 +1,4 @@
-package com.example.profecionalcoursetranslator.view.history
+package com.example.history
 
 import com.example.core.Interactor
 import com.example.model.AppState

@@ -1,4 +1,4 @@
-package com.example.profecionalcoursetranslator.view.history
+package com.example.history
 
 import androidx.lifecycle.LiveData
 import com.example.core.viewmodel.BaseViewModel

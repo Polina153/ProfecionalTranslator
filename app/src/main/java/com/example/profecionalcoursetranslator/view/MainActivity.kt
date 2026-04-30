@@ -13,7 +13,7 @@ import com.example.profecionalcoursetranslator.DescriptionActivity
 import com.example.profecionalcoursetranslator.MainViewModel
 import com.example.profecionalcoursetranslator.R
 import com.example.profecionalcoursetranslator.databinding.ActivityMainBinding
-import com.example.profecionalcoursetranslator.view.history.HistoryActivity
+import com.example.history.HistoryActivity
 import com.example.repository.convertMeaningsToString
 import isOnline
 import org.koin.androidx.viewmodel.ext.android.viewModel

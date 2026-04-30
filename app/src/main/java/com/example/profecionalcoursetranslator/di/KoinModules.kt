@@ -4,8 +4,8 @@ import androidx.room.Room
 import com.example.model.DataModel
 import com.example.profecionalcoursetranslator.MainViewModel
 import com.example.profecionalcoursetranslator.view.MainInteractor
-import com.example.profecionalcoursetranslator.view.history.HistoryInteractor
-import com.example.profecionalcoursetranslator.view.history.HistoryViewModel
+import com.example.history.HistoryInteractor
+import com.example.history.HistoryViewModel
 import com.example.repository.Repository
 import com.example.repository.RepositoryImplementation
 import com.example.repository.RepositoryImplementationLocal

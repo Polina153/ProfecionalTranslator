@@ -1,4 +1,4 @@
-package com.example.profecionalcoursetranslator.view.history
+package com.example.history
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.model.DataModel
-import com.example.profecionalcoursetranslator.R
-
 
 class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.RecyclerItemViewHolder>() {
 
