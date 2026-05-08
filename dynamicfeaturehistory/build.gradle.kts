@@ -1,19 +1,16 @@
 plugins {
-    id("com.android.library")
+    alias(libs.plugins.android.dynamic.feature)
     alias(libs.plugins.kotlin.android)
     id("com.google.devtools.ksp")
 }
-
 android {
-    namespace = "com.example.core"
+    namespace = "com.example.dynamicfeaturehistory"
     compileSdk {
-        version = release(libs.versions.compileSdk.get().toInt())
+        version = release(36)
     }
 
-
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
-
+        minSdk = 31
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -33,15 +30,26 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+        viewBinding = true
+    }
+
 }
 
 dependencies {
+    implementation(project(":app"))
+    implementation(project(":core"))
+
+    implementation(project(":repository"))
     implementation(project(":model"))
     implementation(project(":utils"))
 
-    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit.v113)
     androidTestImplementation(libs.androidx.espresso.core.v340)

@@ -1,4 +1,4 @@
-package com.example.history
+package com.example.dynamicfeaturehistory
 
 import android.view.LayoutInflater
 import android.view.View

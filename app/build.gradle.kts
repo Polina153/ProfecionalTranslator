@@ -40,6 +40,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    dynamicFeatures += setOf(":dynamicfeaturehistory")
 
 }
 
@@ -48,8 +49,6 @@ dependencies {
     implementation(project(":repository"))
     implementation(project(":model"))
     implementation(project(":utils"))
-    implementation(project(":history"))
-
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

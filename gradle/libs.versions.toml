@@ -44,6 +44,7 @@ roomCompiler = "2.6.1"
 rxandroid = "2.1.1"
 rxjava = "2.2.21"
 swiperefreshlayout = "1.2.0-alpha01"
+recyclerviewVersion = "1.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -77,11 +78,13 @@ retrofit2-kotlin-coroutines-adapter = { module = "com.jakewharton.retrofit:retro
 retrofit2-rxjava2-adapter = { module = "com.jakewharton.retrofit:retrofit2-rxjava2-adapter", version.ref = "retrofit2Rxjava2Adapter" }
 rxandroid = { module = "io.reactivex.rxjava2:rxandroid", version.ref = "rxandroid" }
 rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava" }
+recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerviewVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "agp" }
 
 #Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
 #

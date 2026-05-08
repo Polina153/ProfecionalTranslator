@@ -1,4 +1,4 @@
-package com.example.history
+package com.example.dynamicfeaturehistory
 
 import com.example.core.Interactor
 import com.example.model.AppState

@@ -1,9 +1,10 @@
-package com.example.history
+package com.example.dynamicfeaturehistory
 
 import android.os.Bundle
+
 import androidx.lifecycle.Observer
 import com.example.core.BaseActivity
-import com.example.history.databinding.ActivityHistoryBinding
+import com.example.dynamicfeaturehistory.databinding.ActivityHistoryBinding
 import com.example.model.AppState
 import com.example.model.DataModel
 import org.koin.androidx.viewmodel.ext.android.viewModel   // импорт Koin-делегата
@@ -19,7 +20,7 @@ class HistoryActivity : BaseActivity<AppState, HistoryInteractor>() {
         binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-       // iniViewModel()
+        // iniViewModel()
         initViews()
         model.subscribe().observe(this, Observer<AppState> { renderData(it) })
     }
@@ -35,14 +36,14 @@ class HistoryActivity : BaseActivity<AppState, HistoryInteractor>() {
         adapter.setData(data)
     }
 
-   /* private fun iniViewModel() {
-        if (binding.historyActivityRecyclerview.adapter != null) {
-            throw IllegalStateException("The ViewModel should be initialised first")
-        }
-        val viewModel: HistoryViewModel by viewModel()
-        model = viewModel
-        model.subscribe().observe(this@HistoryActivity, Observer<AppState> { renderData(it) })
-    }*/
+    /* private fun iniViewModel() {
+         if (binding.historyActivityRecyclerview.adapter != null) {
+             throw IllegalStateException("The ViewModel should be initialised first")
+         }
+         val viewModel: HistoryViewModel by viewModel()
+         model = viewModel
+         model.subscribe().observe(this@HistoryActivity, Observer<AppState> { renderData(it) })
+     }*/
 
     private fun initViews() {
         setSupportActionBar(binding.includedHistory.toolbar)

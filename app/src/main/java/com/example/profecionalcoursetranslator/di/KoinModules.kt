@@ -1,11 +1,12 @@
 package com.example.profecionalcoursetranslator.di
 
 import androidx.room.Room
+import com.example.core.FeatureNavigator
 import com.example.model.DataModel
 import com.example.profecionalcoursetranslator.MainViewModel
 import com.example.profecionalcoursetranslator.view.MainInteractor
-import com.example.history.HistoryInteractor
-import com.example.history.HistoryViewModel
+//import com.example.history.HistoryInteractor
+//import com.example.history.HistoryViewModel
 import com.example.repository.Repository
 import com.example.repository.RepositoryImplementation
 import com.example.repository.RepositoryImplementationLocal
@@ -13,7 +14,9 @@ import com.example.repository.RepositoryLocal
 import com.example.repository.RetrofitImplementation
 import com.example.repository.RoomDataBaseImplementation
 import com.example.repository.room.HistoryDataBase
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
+import kotlin.math.sin
 
 // Для удобства создадим две переменные: в одной находятся зависимости,
 // используемые во всём приложении, во второй - зависимости конкретного экрана
@@ -44,8 +47,9 @@ val mainScreen = module {
 }
 
 val historyScreen = module {
-    factory { HistoryViewModel(get()) }
-    factory { HistoryInteractor(get(), get()) }
+   // single<FeatureNavigator>{ FeatureNavigatorImpl(androidContext()) }
+    //factory { HistoryViewModel(get()) }
+   // factory { HistoryInteractor(get(), get()) }
 }
 /*// Функция factory сообщает Koin, что эту зависимость нужно создавать каждый
 // раз заново, что как раз подходит для Activity и её компонентов.

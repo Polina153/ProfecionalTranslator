@@ -1,21 +1,21 @@
 package com.example.profecionalcoursetranslator.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
 import com.example.core.BaseActivity
+import com.example.core.FeatureNavigator
 import com.example.model.AppState
 import com.example.model.DataModel
 import com.example.profecionalcoursetranslator.DescriptionActivity
 import com.example.profecionalcoursetranslator.MainViewModel
 import com.example.profecionalcoursetranslator.R
 import com.example.profecionalcoursetranslator.databinding.ActivityMainBinding
-import com.example.history.HistoryActivity
 import com.example.repository.convertMeaningsToString
 import isOnline
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -25,9 +25,11 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
     private lateinit var binding: ActivityMainBinding
     override lateinit var model: MainViewModel
-   // private val adapter: MainAdapter by lazy { MainAdapter(onListItemClickListener) }
-   private val adapter: MainAdapter by lazy { MainAdapter(::onItemClick) }
 
+    // private val adapter: MainAdapter by lazy { MainAdapter(onListItemClickListener) }
+    private val adapter: MainAdapter by lazy { MainAdapter(::onItemClick) }
+
+    private val navigator: FeatureNavigator by inject()
 
     private val fabClickListener: View.OnClickListener =
         View.OnClickListener {
@@ -44,7 +46,8 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                 convertMeaningsToString(data.meanings!!),
                 data.meanings!![0].imageUrl
             )
-        )}
+        )
+    }
 
     private val onListItemClickListener: MainAdapter.OnListItemClickListener =
         object : MainAdapter.OnListItemClickListener {
@@ -92,7 +95,8 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_history -> {
-                startActivity(Intent(this, HistoryActivity::class.java))
+                //startActivity(Intent(this, HistoryActivity::class.java))
+                navigator.openFeatureActivity()
                 true
             }
 

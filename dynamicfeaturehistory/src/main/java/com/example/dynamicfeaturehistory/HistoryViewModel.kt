@@ -1,4 +1,4 @@
-package com.example.history
+package com.example.dynamicfeaturehistory
 
 import androidx.lifecycle.LiveData
 import com.example.core.viewmodel.BaseViewModel
